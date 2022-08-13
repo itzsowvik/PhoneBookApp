@@ -6,11 +6,35 @@
 <div class="text-center">
     <h1 class="display-4">Contact List</h1>
     <a asp-controller="Create" asp-action="Index" class="btn btn-secondary">Create New Contact</a>
-    @foreach(var obj in Model)
-    {
-        <h1>
-            @obj.FullName
-        </h1>
-    }
+    <br />
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+             <td width="50%">Name</td>
+            <td width="30%">Number</td>
+        </thead>
+
+        <tbody>
+            @foreach(var obj in Model)
+            {
+                <td>
+                    @obj.FullName
+                </td>
+                <td>
+                    @obj.PhoneNumber
+                </td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a class="btn btn-primary" asp-controller="Category" asp-action="Edit" asp-route-Id="@obj.Id"> Edit
+
+                        </a>
+                        <a class="btn btn-danger" asp-controller="Category" asp-action="Delete" asp-route-Id="@obj.Id"> Delete
+
+                        </a>
+                    </div>
+                    </td>
+            }
+        </tbody>
+       
+    </table>
 
 </div>
