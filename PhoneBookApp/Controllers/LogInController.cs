@@ -27,9 +27,10 @@ namespace PhoneBookApp.Controllers
             var UserInfo = _db.Users.FirstOrDefault(u=>u.UserName == obj.UserName && u.Password == obj.Password);
             if(UserInfo == null)
             {
-                return NotFound();
+                return View("~/Views/NotFound.cshtml");
             }
-            return View("~/Views/Home/Index.cshtml", obj);
+            TempData["userID"] = UserInfo.Id;
+            return RedirectToAction("Index", "Home");
         }
     }
 }
